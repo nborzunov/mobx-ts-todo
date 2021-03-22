@@ -6,7 +6,6 @@ import {observer} from "mobx-react";
 
 const ToDoItem:React.FC<{ todo: any }> = ({todo}) => {
     const store = React.useContext(StoreContext);
-    console.log('fsafa')
     return (
         <li className='todo'>
             <input
