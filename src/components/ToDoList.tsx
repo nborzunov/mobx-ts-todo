@@ -5,15 +5,18 @@ import {StoreContext, ToDoModel} from "../store/store";
 import ToDoItem from "./ToDoItem";
 import {observer} from "mobx-react";
 import Filter from "./Filter";
+import Table from "./Table";
 
 const ToDoList = observer(() => {
     const store = React.useContext(StoreContext);
 
     return(
         <Fragment>
-            <AddToDo/>
             <Filter/>
-            <ToDosView todos={store.getFilteredList} />
+            <Table>
+                <ToDosView todos={store.getFilteredList} />
+            </Table>
+            <AddToDo/>
         </Fragment>
 
     );
@@ -21,9 +24,9 @@ const ToDoList = observer(() => {
 
 const ToDosView:React.FC<{ todos: ToDoModel[] }> = observer(({todos}) => {
     return(
-        <ul>
+        <>
             {todos.map((todo) => <ToDoItem todo={todo} key={todo.id}/>)}
-        </ul>
+        </>
     );
 });
 

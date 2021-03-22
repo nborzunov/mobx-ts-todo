@@ -7,15 +7,21 @@ import {observer} from "mobx-react";
 const ToDoItem:React.FC<{ todo: any }> = ({todo}) => {
     const store = React.useContext(StoreContext);
     return (
-        <li className='todo'>
-            <input
-                type='checkbox'
-                checked={todo.completed}
-                onChange={() => store.completeToDo(todo)}
-            />
-            <span>{todo.title}</span>
-            <button onClick={() => store.removeToDo(todo)}>X</button>
-        </li>
+        <tr>
+           <td>
+               <input
+                   type='checkbox'
+                   checked={todo.completed}
+                   onChange={() => store.completeToDo(todo)}
+               />
+           </td>
+            <td>
+                {todo.title}
+            </td>
+            <td>
+                <button onClick={() => store.removeToDo(todo)}>X</button>
+            </td>
+        </tr>
     );
 };
 
