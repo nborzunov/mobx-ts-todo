@@ -6,7 +6,7 @@ export interface ToDoModel {
     id: number,
     title: string,
     completed: boolean,
-    createdDate: number
+    labels: Array<string>
 }
 
 class ToDoStore {
@@ -15,9 +15,9 @@ class ToDoStore {
     };
 
     @observable todos: IObservableArray<ToDoModel> = observable([
-        {id: 1, title: 'Сходить афыаыф', completed: false, createdDate: 31314115},
-        {id: 2, title: 'фыафа афыаыф', completed: true, createdDate: 43545543},
-        {id: 3, title: 'афыафаррр афыаыф', completed: false, createdDate: 57775569},
+        {id: 1, title: 'Do something', completed: false, labels: []},
+        {id: 2, title: 'Do something else..', completed: true, labels: ['home']},
+        {id: 3, title: 'Another task', completed: false, labels: ['school']},
     ]);
 
     next: number = 4;
@@ -29,7 +29,7 @@ class ToDoStore {
             id: this.next,
             title: text,
             completed: false,
-            createdDate: Date.now()
+            labels: []
         });
         this.next++
     };
@@ -44,7 +44,18 @@ class ToDoStore {
 
     @action changeFilter(filter: number){
         this.filter = filter;
+    };
+
+    @action addNewLabel(todo: ToDoModel, text: string | null){
+        if(text) {
+            todo.labels.push(text);
+        }
+    };
+
+    @action removeLabel(todo: ToDoModel, label: string){
+        todo.labels = todo.labels.filter(item => item !== label)
     }
+
     @computed get getFilteredList() {
         switch(this.filter){
             case 1:

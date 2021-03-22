@@ -12,6 +12,7 @@ const ToDoList = observer(() => {
 
     return(
         <Fragment>
+
             <Filter/>
             <Table>
                 <ToDosView todos={store.getFilteredList} />
