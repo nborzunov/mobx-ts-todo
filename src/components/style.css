@@ -1,0 +1,11 @@
+.todo{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    text-align: center;
+}
+.filter{
+    display: flex;
+    column-gap: 16px;
+    margin: 16px;
+}
